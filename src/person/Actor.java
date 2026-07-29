@@ -3,12 +3,18 @@ package person;
 import java.util.Objects;
 
 public class Actor extends Person {
-    int height;
+    private int height;
 
     public Actor(String name, String surname, Gender gender, int height) {
-        this.name = name;
-        this.surname = surname;
-        this.gender = gender;
+        super(name, surname, gender);
+        this.height = height;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
         this.height = height;
     }
 
@@ -18,18 +24,18 @@ public class Actor extends Person {
         if (object == null || getClass() != object.getClass()) return false;
         Actor actor = (Actor) object;
         return height == actor.height &&
-                Objects.equals(name, actor.name) &&
-                Objects.equals(gender, actor.gender) &&
-                Objects.equals(surname, actor.surname);
+                Objects.equals(getName(), actor.getName()) &&
+                Objects.equals(getGender(), actor.getGender()) &&
+                Objects.equals(getSurname(), actor.getSurname());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(height, name, gender, surname);
+        return Objects.hash(height, getName(), getGender(), getSurname());
     }
 
     @Override
     public String toString() {
-        return name + " " + surname + "(" + height + ")";
+        return getName() + " " + getSurname() + "(" + height + ")";
     }
 }
